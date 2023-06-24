@@ -5,30 +5,30 @@ const prisma = new PrismaClient();
 const controller = {};
 
 controller.index = async (req, res) => {
-  const todoList = await prisma.ticket.findMany();
+  const labels = await prisma.label.findMany();
 
-  res.json(todoList);
+  res.json(labels);
 };
 
 controller.show = async (req, res) => {
   const { id } = req.params;
 
-  const ticket = await prisma.ticket.findUnique({
+  const result = await prisma.label.findUnique({
     where: { id: Number(id) },
   });
 
-  if (ticket) {
-    res.json(ticket);
+  if (result) {
+    res.json(result);
   } else {
-    res.status(400).json({ message: "400", err: "todo not found" });
+    res.status(400).json({ message: "400", err: "label not found" });
   }
 };
 
 controller.create = async (req, res) => {
-  const { title } = req.body;
-  const result = await prisma.ticket.create({
+  const { label } = req.body;
+  const result = await prisma.label.create({
     data: {
-      title,
+      label,
     },
   });
 
@@ -37,19 +37,17 @@ controller.create = async (req, res) => {
 
 controller.update = async (req, res) => {
   const { id } = req.params;
-  const { title, description, status } = req.body;
+  const { label } = req.body;
 
   try {
-    const ticket = await prisma.ticket.update({
+    const result = await prisma.label.update({
       where: { id: Number(id) },
       data: {
-        title,
-        description,
-        status,
+        label,
       },
     });
 
-    res.json(ticket);
+    res.json(result);
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -57,7 +55,7 @@ controller.update = async (req, res) => {
 
 controller.destroy = async (req, res) => {
   const { id } = req.params;
-  await prisma.ticket.delete({
+  await prisma.label.delete({
     where: {
       id: Number(id),
     },
