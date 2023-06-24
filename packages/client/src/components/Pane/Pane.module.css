@@ -1,0 +1,14 @@
+.pane {
+  background-color: #101204;
+  border-radius: 3px;
+  box-shadow: inset 0px 0px 0px 1px #00000000, 0px 1px 1px #03040480,
+    0px 0px 1px #03040480;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  padding: 14px 8px;
+}
+
+.titleWrapper {
+  padding: 2px 8px;
+}

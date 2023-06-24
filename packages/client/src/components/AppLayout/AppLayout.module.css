@@ -1,0 +1,35 @@
+.header {
+  color: #ffffffd6;
+  padding: 8px;
+}
+
+.headerNav {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.title {
+  font-size: 1.2rem;
+}
+
+.link {
+  color: inherit;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #a6c5e229;
+    color: inherit;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 0 8px;
+}

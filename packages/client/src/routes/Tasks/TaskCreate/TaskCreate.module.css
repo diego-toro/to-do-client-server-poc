@@ -1,0 +1,34 @@
+.addTask {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  border-radius: 8px;
+  padding: 4px 8px 4px 6px;
+
+  &:hover {
+    background-color: #a6c5e229;
+  }
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  flex: 1;
+  color: #b6c2cf;
+  outline: none;
+
+  &:focus-within {
+    border-bottom: 1px solid #b6c2cf;
+  }
+}

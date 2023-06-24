@@ -1,0 +1,11 @@
+```bash
+npx prisma migrate dev --create-only
+```
+
+```sql
+    "status" TEXT CHECK( "status" IN ('TO_DO','DOING','DONE') ) NOT NULL DEFAULT 'TO_DO'
+```
+
+```bash
+npx prisma migrate dev
+```
