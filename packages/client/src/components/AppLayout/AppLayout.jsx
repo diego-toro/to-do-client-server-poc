@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import styles from "./AppLayout.module.css";
 
 function AppLayout() {
@@ -8,13 +8,13 @@ function AppLayout() {
         <nav className={styles.headerNav}>
           <h1 className={styles.title}>Le Board</h1>
 
-          <Link className={styles.link} to={`/`}>
+          <NavLink className={styles.link} to={`/`}>
             <span>Tasks</span>
-          </Link>
+          </NavLink>
 
-          <Link className={styles.link} to={`/labels`}>
+          <NavLink className={styles.link} to={`/labels`}>
             <span>Labels</span>
-          </Link>
+          </NavLink>
         </nav>
       </header>
       <main className={styles.content}>

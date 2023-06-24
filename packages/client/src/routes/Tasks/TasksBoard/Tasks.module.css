@@ -1,0 +1,14 @@
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 8px;
+  gap: 16px;
+  align-items: start;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: space-between;
+}

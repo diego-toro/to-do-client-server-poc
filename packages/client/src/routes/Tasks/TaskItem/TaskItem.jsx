@@ -6,6 +6,7 @@ import IconButton from "../../../components/IconButton/IconButton";
 import Button from "../../../components/Button/Button";
 import Card from "../../../components/Card/Card";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 function InlineEditForm({ task, setEditingId, setTaskList }) {
   const inputRef = useRef();
@@ -62,27 +63,29 @@ function TaskItem({ task, setTaskList, editingId, setEditingId }) {
   };
 
   return (
-    <Card className={styles.taskItem}>
-      <div className={styles.taskContent}>
-        <span>{task.title}</span>
-        <div className={styles.buttonGroup}>
-          <IconButton type="button" onClick={() => setEditingId(task.id)}>
-            <FiEdit2 />
-          </IconButton>
-          <IconButton type="button" onClick={handleDelete}>
-            <FiTrash2 />
-          </IconButton>
+    <Link to={`${task.id}`}>
+      <Card className={styles.taskItem}>
+        <div className={styles.taskContent}>
+          <span>{task.title}</span>
+          <div className={styles.buttonGroup}>
+            <IconButton type="button" onClick={() => setEditingId(task.id)}>
+              <FiEdit2 />
+            </IconButton>
+            <IconButton type="button" onClick={handleDelete}>
+              <FiTrash2 />
+            </IconButton>
+          </div>
         </div>
-      </div>
 
-      {task.id === editingId ? (
-        <InlineEditForm
-          task={task}
-          setEditingId={setEditingId}
-          setTaskList={setTaskList}
-        />
-      ) : null}
-    </Card>
+        {task.id === editingId ? (
+          <InlineEditForm
+            task={task}
+            setEditingId={setEditingId}
+            setTaskList={setTaskList}
+          />
+        ) : null}
+      </Card>
+    </Link>
   );
 }
 
