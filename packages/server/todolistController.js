@@ -37,20 +37,21 @@ controller.create = async (req, res) => {
 
 controller.update = async (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
+  const { title, description, status } = req.body;
 
   try {
     const ticket = await prisma.ticket.update({
       where: { id: Number(id) },
       data: {
         title,
+        description,
+        status,
       },
     });
-    console.log(`🚀 ~ controller.update= ~ ticket:`, ticket);
 
     res.json(ticket);
   } catch (error) {
-    res.json({ error: `Post with ID ${id} does not exist in the database` });
+    res.status(400).json({ error });
   }
 };
 

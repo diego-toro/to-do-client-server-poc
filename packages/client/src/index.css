@@ -37,6 +37,13 @@ textarea {
   outline: none;
   background-color: transparent;
   color: #b6c2cf;
+  width: 100%;
+}
+
+textarea {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
 }
 
 a {

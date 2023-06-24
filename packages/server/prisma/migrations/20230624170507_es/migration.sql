@@ -4,7 +4,7 @@ CREATE TABLE "Ticket" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "title" TEXT NOT NULL,
-    "content" TEXT,
+    "description" TEXT,
     "status" TEXT CHECK( "status" IN ('TO_DO','DOING','DONE') ) NOT NULL DEFAULT 'TO_DO'
 );
 

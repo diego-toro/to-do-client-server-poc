@@ -4,6 +4,10 @@ export function getTasks() {
   return fetchJSON("http://localhost:3000/api", {});
 }
 
+export function getTask(taskId) {
+  return fetchJSON(`http://localhost:3000/api/${taskId}`, {});
+}
+
 export function addTask(newTask) {
   return fetchJSON("http://localhost:3000/api", {
     method: "POST",

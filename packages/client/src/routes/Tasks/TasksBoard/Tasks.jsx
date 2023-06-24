@@ -13,8 +13,12 @@ function Tasks() {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const tasks = await getTasks();
-      setTaskList(tasks);
+      try {
+        const tasks = await getTasks();
+        setTaskList(tasks);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchTasks();
   }, []);
