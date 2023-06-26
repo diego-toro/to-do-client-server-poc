@@ -25,10 +25,11 @@ controller.show = async (req, res) => {
 };
 
 controller.create = async (req, res) => {
-  const { label } = req.body;
+  const { title, color } = req.body;
   const result = await prisma.label.create({
     data: {
-      label,
+      title,
+      color,
     },
   });
 
@@ -37,13 +38,14 @@ controller.create = async (req, res) => {
 
 controller.update = async (req, res) => {
   const { id } = req.params;
-  const { label } = req.body;
+  const { title, color } = req.body;
 
   try {
     const result = await prisma.label.update({
       where: { id: Number(id) },
       data: {
-        label,
+        title,
+        color,
       },
     });
 

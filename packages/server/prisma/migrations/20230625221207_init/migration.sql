@@ -11,7 +11,8 @@ CREATE TABLE "Ticket" (
 -- CreateTable
 CREATE TABLE "Label" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "label" TEXT NOT NULL
+    "title" TEXT NOT NULL,
+    "color" TEXT NOT NULL
 );
 
 -- CreateTable

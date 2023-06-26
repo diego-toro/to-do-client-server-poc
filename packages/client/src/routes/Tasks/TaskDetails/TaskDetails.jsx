@@ -49,8 +49,7 @@ function TaskDetails() {
       title={
         <>
           <FiColumns />
-          <Link to="/tasks">Tasks</Link>
-          &gt; {id}
+          <Link to="/tasks">Tasks</Link> / {id}
         </>
       }
     >
