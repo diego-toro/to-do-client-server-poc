@@ -7,6 +7,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:hover {
     filter: saturate(85%) brightness(85%);

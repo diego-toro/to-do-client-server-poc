@@ -1,4 +1,6 @@
-import { updateLabel } from "../../../api";
+import { FiTrash2 } from "react-icons/fi";
+import { updateLabel, deleteLabel } from "../../../api";
+import IconButton from "../../../components/IconButton";
 import PopIn, { PopContent, PopInTrigger } from "../../../components/PopIn";
 import { accessibleColor } from "../../../utils/hexToRGB";
 import LabelForm from "../LabelForm";
@@ -14,6 +16,16 @@ function LabelEdit({ label, setLabelList }) {
     );
   };
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    if (confirm("Are you sure?")) {
+      await deleteLabel(label.id);
+      setLabelList((prevLabels) =>
+        prevLabels.filter(({ id }) => id !== label.id)
+      );
+    }
+  };
+
   return (
     <PopIn>
       <PopInTrigger
@@ -23,6 +35,9 @@ function LabelEdit({ label, setLabelList }) {
         <span style={{ color: accessibleColor(label.color) }}>
           {label.title}
         </span>
+        <IconButton type="button" onClick={handleDelete}>
+          <FiTrash2 />
+        </IconButton>
       </PopInTrigger>
 
       <PopContent>
