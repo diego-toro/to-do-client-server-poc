@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getTask, updateTask } from "../../../api";
 import Card from "../../../components/Card";
 import Button from "../../../components/Button";
+import { useLabelsData } from "../../../models/useLabelsData";
 
 const options = [
   { value: "TO_DO", label: "TO DO" },
@@ -16,6 +17,7 @@ const options = [
 
 function TaskDetails() {
   const { id } = useParams();
+  const [labelList] = useLabelsData();
 
   const [task, setTask] = useState(null);
 
@@ -33,14 +35,19 @@ function TaskDetails() {
     const editableFields = Object.fromEntries(formData);
     const newTask = await updateTask({ ...task, ...editableFields });
     setTask(newTask);
-    console.log(
-      "🚀 ~ file: TaskDetails.jsx:33 ~ handleSubmit ~ newTask:",
-      newTask
-    );
   };
 
   const handleOptionChange = async (event) => {
     const newTask = await updateTask({ ...task, status: event.target.value });
+    setTask(newTask);
+  };
+
+  const handleLabelsChange = async (event) => {
+    const newTask = await updateTask({
+      ...task,
+      labels: [{ id: Number(event.target.value) }],
+    });
+
     setTask(newTask);
   };
 
@@ -84,6 +91,15 @@ function TaskDetails() {
             {options.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
+              </option>
+            ))}
+          </select>
+          <hr />
+          <select value={task?.labels?.[0]?.id} onChange={handleLabelsChange}>
+            <option value="">Select...</option>
+            {labelList.map((label) => (
+              <option key={label.id} value={label.id}>
+                {label.color} - {label.title}
               </option>
             ))}
           </select>

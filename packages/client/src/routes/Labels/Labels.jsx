@@ -2,25 +2,12 @@ import { FiTag } from "react-icons/fi";
 import Page from "../../components/Page";
 import Pane from "../../components/Pane";
 import styles from "./Labels.module.css";
-import { getLabels } from "../../api";
-import { useEffect, useState } from "react";
 import LabelCreate from "./LabelCreate";
 import LabelEdit from "./LabelEdit";
+import { useLabelsData } from "../../models/useLabelsData";
 
 function Labels() {
-  const [labelList, setLabelList] = useState([]);
-
-  useEffect(() => {
-    const fetchLabels = async () => {
-      try {
-        const tasks = await getLabels();
-        setLabelList(tasks);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchLabels();
-  }, []);
+  const [labelList, setLabelList] = useLabelsData();
 
   return (
     <Page

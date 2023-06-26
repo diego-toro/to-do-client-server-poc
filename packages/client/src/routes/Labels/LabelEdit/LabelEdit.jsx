@@ -17,7 +17,7 @@ function LabelEdit({ label, setLabelList }) {
   };
 
   const handleDelete = async (event) => {
-    event.preventDefault();
+    event.stopPropagation();
     if (confirm("Are you sure?")) {
       await deleteLabel(label.id);
       setLabelList((prevLabels) =>

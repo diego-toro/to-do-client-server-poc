@@ -5,7 +5,11 @@ const prisma = new PrismaClient();
 const controller = {};
 
 controller.index = async (req, res) => {
-  const tasks = await prisma.ticket.findMany();
+  const tasks = await prisma.ticket.findMany({
+    include: {
+      labels: true,
+    },
+  });
 
   res.json(tasks);
 };
@@ -15,6 +19,9 @@ controller.show = async (req, res) => {
 
   const ticket = await prisma.ticket.findUnique({
     where: { id: Number(id) },
+    include: {
+      labels: true,
+    },
   });
 
   if (ticket) {
@@ -35,22 +42,48 @@ controller.create = async (req, res) => {
   res.json(result);
 };
 
+function arrayDifference(array1, array2) {
+  return array1.filter(
+    ({ id }) => array2.find(({ id: labelId }) => labelId === id) === undefined
+  );
+}
+
 controller.update = async (req, res) => {
   const { id } = req.params;
-  const { title, description, status } = req.body;
+  const { title, description, status, labels } = req.body;
 
   try {
-    const ticket = await prisma.ticket.update({
+    const ticket = await prisma.ticket.findUnique({
+      where: { id: Number(id) },
+      include: {
+        labels: true,
+      },
+    });
+
+    let disconnectLabels = arrayDifference(ticket.labels, labels);
+
+    let connectLabels = arrayDifference(labels, ticket.labels);
+
+    const updatedTicket = await prisma.ticket.update({
       where: { id: Number(id) },
       data: {
         title,
         description,
         status,
+        labels: {
+          connect: connectLabels.map(({ id }) => ({ id })),
+          disconnect: disconnectLabels.map(({ id }) => ({ id })),
+        },
       },
+      include: { labels: true },
     });
 
-    res.json(ticket);
+    res.json(updatedTicket);
   } catch (error) {
+    console.log(
+      "🚀 ~ file: controller.js:59 ~ controller.update= ~ error:",
+      error
+    );
     res.status(400).json({ error });
   }
 };

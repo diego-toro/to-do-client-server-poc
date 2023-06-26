@@ -6,12 +6,13 @@ export function PopInTrigger({ children, className, ...props }) {
   const { focusPopIn } = useContext(PopInContext);
 
   return (
-    <button
+    <div
+      role="button"
       {...props}
       onClick={focusPopIn}
       className={`${styles.control} ${className ?? ""}`}
     >
       {children}
-    </button>
+    </div>
   );
 }
