@@ -1,0 +1,14 @@
+.label {
+  line-height: 32px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+
+  &:hover {
+    filter: saturate(85%) brightness(85%);
+  }
+}

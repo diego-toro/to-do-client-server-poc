@@ -5,7 +5,7 @@ import styles from "./Labels.module.css";
 import { getLabels } from "../../api";
 import { useEffect, useState } from "react";
 import LabelCreate from "./LabelCreate";
-import { accessibleColor } from "../../utils/hexToRGB";
+import LabelEdit from "./LabelEdit";
 
 function Labels() {
   const [labelList, setLabelList] = useState([]);
@@ -32,19 +32,17 @@ function Labels() {
       }
     >
       <Pane className={styles.labelsContent}>
-        {labelList.map((label) => (
-          <button
-            key={label.id}
-            className={styles.label}
-            style={{ backgroundColor: label.color }}
-          >
-            <span style={{ color: accessibleColor(label.color) }}>
-              {label.title}
-            </span>
-          </button>
-        ))}
+        <div className={styles.container}>
+          {labelList.map((label) => (
+            <LabelEdit
+              key={label.id}
+              label={label}
+              setLabelList={setLabelList}
+            />
+          ))}
 
-        <LabelCreate setLabelList={setLabelList} />
+          <LabelCreate setLabelList={setLabelList} />
+        </div>
       </Pane>
     </Page>
   );

@@ -50,3 +50,12 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+hr {
+  background-color: #a6c5e229;
+  border: 0;
+  height: 1px;
+  margin: 16px 0;
+  padding: 0;
+  width: 100%;
+}
