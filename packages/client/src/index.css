@@ -25,10 +25,6 @@ button {
   color: #8c9bab;
   padding: 0;
   cursor: pointer;
-
-  &:hover {
-    color: #9fadbc;
-  }
 }
 
 input,

@@ -19,6 +19,10 @@
 
 .icon {
   font-size: 18px;
+
+  &:hover {
+    color: #9fadbc;
+  }
 }
 
 .input {

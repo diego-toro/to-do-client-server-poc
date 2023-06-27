@@ -26,3 +26,31 @@
 .saveButton {
   align-self: flex-end;
 }
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.colorDemo {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.labelsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.label {
+  padding: 4px 12px;
+  border-radius: 4px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+}
